@@ -1,0 +1,103 @@
+<mvc:View
+    xmlns:form="sap.ui.layout.form"
+    controllerName="com.app.studentapp.controller.Details"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+>
+    <!-- <form:SimpleForm id="formstudentdetails">
+        <Label id="_IDGenLabel1" text="id" />
+        <Text id="_IDGenText1" text="{id}" />
+        <Label id="_IDGenLabel2" text="name" />
+        <Text id="_IDGenText2" text="{name}" />
+        <Label id="_IDGenLabel3"  text="city"></Label>
+        <Text id="_IDGenText3" text="{city}"></Text>
+         <Label id="_IDGenLabel4"  text="subject"></Label>
+        <Text id="_IDGenText4" text="{subject}"></Text>
+    </form:SimpleForm>  -->
+
+    <uxap:ObjectPageLayout
+        id="idobjectpagelayout"
+        enableLazyLoading="true"
+        beforeNavigate="onBeforeNavigate"
+        useIconTabBar="true"
+        showTitleInHeaderContent="true"
+        upperCaseAnchorBar="true"
+    >
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle id="idobjectpagedynamictitle">
+                <uxap:expandedHeading>
+                    <Title
+                        text="{name}"
+                        wrapping="true"
+                    />
+                </uxap:expandedHeading>
+                <uxap:actions>
+                    <Button
+                        id="idBtnDelete"
+                        icon="sap-icon://delete"
+                        tooltip="Delete Student"
+                        type="Negative"
+                        press="onDeleteStudent"
+                    />
+                    </uxap:actions>
+
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:sections>
+            <uxap:ObjectPageSection
+                titleUppercase="true"
+                id="generalInfo"
+                title="General Information"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="idGeneralInfoSubSection">
+                        <uxap:blocks>
+                   
+                    <core:Fragment type="XML" fragmentName="com.app.studentapp.Fragments.studentinfo"/>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+
+                
+            </uxap:ObjectPageSection>
+
+            <uxap:ObjectPageSection
+                titleUppercase="true"
+                id="AddressInfo"
+                title="Address Information"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="idaddressInfoSubSection">
+                        <uxap:blocks>
+                    <core:Fragment type="XML" fragmentName="com.app.studentapp.Fragments.address"/>
+                  
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+
+                
+            </uxap:ObjectPageSection>
+            <!-- <uxap:ObjectPageSection
+                titleUppercase="true"
+                id="addressInfo"
+                title="Address Information"
+            >
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection id="idAddressInfoSubSection">
+                        <uxap:blocks>
+                            <form:SimpleForm id="formaddressdetails">
+                                <Label text="city" />
+                                <Text text="{id}" />
+                                <Label text="street" />
+                                <Text text="{subject}" />
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection> -->
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

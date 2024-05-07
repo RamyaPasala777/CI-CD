@@ -1,0 +1,26 @@
+{
+  "name": "managedApprouter1",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.120.8",
+    "cds-plugin-ui5": "^0.6.13"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-student-details": "cds watch --open com.app.studentdetails/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-student-app": "cds watch --open com.app.studentapp/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "workspaces": [
+    "app/*"
+  ]
+}

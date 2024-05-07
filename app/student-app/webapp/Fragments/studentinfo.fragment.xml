@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m"
+>
+    <form:SimpleForm id="formstudentdetails">
+        <Label
+            id="_IDGenLabel1"
+            text="id"
+        />
+        <Text
+            id="_IDGenText1"
+            text="{id}"
+        />
+        <Label
+            id="_IDGenLabel2"
+            text="name"
+        />
+        <Text
+            id="_IDGenText2"
+            text="{name}"
+        />
+        <Label
+            id="_IDGenLabel3"
+            text="city"
+        />
+        <Text
+            id="_IDGenText3"
+            text="{city}"
+        />
+    </form:SimpleForm>
+</core:FragmentDefinition>

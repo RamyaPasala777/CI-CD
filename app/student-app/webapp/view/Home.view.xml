@@ -1,0 +1,220 @@
+<mvc:View
+    xmlns:layout="sap.ui.layout"
+    xmlns:f="sap.f"
+    controllerName="com.app.studentapp.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <f:DynamicPage
+        id="idStudentListPage"
+        headerExpanded="true"
+    >
+        <f:title>
+            <f:DynamicPageTitle id="idStudentListPageTitle">
+                <f:heading>
+                    <Title
+                        id="idStudentPageHeadingTitle"
+                        text="Student Details"
+                    />
+                </f:heading>
+ 
+                <f:expandedContent>
+                    <Label
+                        id="idStudentListPageECL"
+                        text="Student app"
+                    />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <Label
+                        id="idStudentListPageESL"
+                        text="Student app"
+                    />
+                </f:snappedContent>
+                <f:snappedTitleOnMobile>
+                    <Title
+                        id="idStudentListPageEST"
+                        text="Student app"
+                    />
+                </f:snappedTitleOnMobile>
+                <f:navigationActions>
+                    <Button
+                        id="idBtnFullScreen"
+                        icon="sap-icon://full-screen"
+                        type="Transparent"
+                    />
+                    <Button
+                        id="idBtnDecline"
+                        icon="sap-icon://decline"
+                        type="Transparent"
+                    />
+                </f:navigationActions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader
+                id="idDynamicPageHeader"
+                pinnable="true"
+            >
+                <HBox id="idFilterHLayout" alignContent="SpaceAround" width="100vw">
+                    <VBox id="id" class="sapUiSmallMarginEnd">
+                        <Label
+                            id="idlabel"
+                            text="Id:"
+                        />
+                       
+                        <MultiInput id="idInput" showSuggestion="false" width="70%" showValueHelp="false"/>
+                    </VBox>
+                    <VBox id="name" class="sapUiSmallMarginEnd">
+                        <Label
+                            id="nameLabel"
+                            text="Name:"
+                        />
+                    
+                        <MultiInput id="nameInput" showSuggestion="false" width="70%" showValueHelp="false"/>
+                    </VBox>
+                    <VBox id="age" class="sapUiSmallMarginEnd">
+                        <Label
+                            id="ageLabel"
+                            text="Age:"
+                        />
+                      <MultiInput id="ageInput" showSuggestion="false" width="70%" showValueHelp="false"/>
+                    </VBox>
+                    <VBox id="branch" class="sapUiSmallMarginEnd">
+                        <Label
+                            id="branchLabel"
+                            text="Branch:"
+                        />
+                     <MultiInput id="branchInput" showSuggestion="false" width="70%" showValueHelp="false"/>
+                    </VBox>
+                    <VBox id="city" class="sapUiSmallMarginEnd">
+                        <Label
+                            id="cityLabel"
+                            text="city:"
+                        />
+                     <MultiInput id="cityInput" showSuggestion="false" width="70%" showValueHelp="false"/>
+                    </VBox>
+ 
+                    <VBox id="GoButton" class="sapUiSmallMarginEnd">
+                        <Label
+                            id="GoButtonLabel"
+                            text=""
+                        />
+                        <Button
+                            id="GoButtonValue"
+                            text="Go"
+                            type="Emphasized"
+                            press="onGo"
+                        />
+                    </VBox>  
+                    <VBox id="ClearFilterButton" class="sapUiSmallMarginEnd">
+                        <Label
+                            id="ClearButtonLabel"
+                            text=""
+                        />
+                        <Button
+                            id="ClearFilterButtonValue"
+                            text="Clear Filter"
+                            type="Emphasized"
+                            press="onClear"
+                        />
+                    </VBox>  
+ 
+                </HBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table
+                id="idStudentTable"
+                mode="SingleSelectMaster"
+                alternateRowColors="true"
+                items="{/student}"
+                selectionChange="studentdetails"
+            >
+                <headerToolbar>
+                    <OverflowToolbar id="idStudentTableHeader">
+                        <Title
+                            id="idTableHeaderTitle"
+                            text="Student"
+                        />
+                        <ToolbarSpacer id="idTableHeaderSpacer" />
+                        <Button
+                            id="Create"
+                            icon="sap-icon://add"
+                            tooltip="Create Employee"
+                            type="Success"
+                            press="addbtn"
+                        />
+                        <Button
+                            id="Delete"
+                            icon="sap-icon://delete"
+                            tooltip="Delete Employee"
+                            type="Negative"
+                        />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column id="idCol">
+                        <Title
+                            id="idColTitle"
+                            text="Id"
+                        />
+                    </Column>
+                    <Column id="idnameCol">
+                        <Title
+                            id="nameColTitle"
+                            text="Name"
+                        />
+                    </Column>
+                    <Column id="ageCol">
+                        <Title
+                            id="ageColTitle"
+                            text="Age"
+                        />
+                    </Column>
+                    <Column id="branchCol">
+                        <Title
+                            id="branchColTitle"
+                            text="Branch"
+                        />
+                    </Column>
+                    <Column id="cityCol">
+                        <Title
+                            id="cityColTitle"
+                            text="City"
+                        />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="idStudentTableColListItem" type="Navigation">
+                        <cells>
+                            <Text
+                                id="idColValue"
+                                text="{id}"
+                            />
+                            <Text
+                                id="nameColValue"
+                                text="{name}"
+                            />
+                            <Text
+                                id="ageColValue"
+                                text="{age}"
+                            />
+                            <Text
+                                id="branchColValue"
+                                text="{branch}"
+                            />
+                            <Text
+                                id="cityColValue"
+                                text="{city}"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>
+ 
+
+

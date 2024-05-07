@@ -1,0 +1,84 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m"
+>
+    <Dialog
+        id="idCreateStudentDialog"
+        resizable="true"
+        draggable="true"
+        contentWidth="30%"
+        title="Create Employee"
+    >
+         <beginButton>
+            <Button
+                id="idCreateButton"
+                text="Create"
+                press="onCreateStudent"
+                type="Success"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                id="idCancelButton"
+                text="Cancel"
+                press="onCloseDialog"
+                type="Negative"
+            />
+        </endButton>
+        <content>
+            <form:SimpleForm
+                id="idEmployeeDetailsForm"
+                editable="true"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="4"
+                emptySpanL="4"
+                emptySpanM="4"
+                emptySpanS="0"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false"
+            >
+                <Label
+                  
+                    text="id"
+                />
+                <Input
+                  
+                    value="{localModel>/id}"
+                />
+                <Label
+                 
+                    text="Name"
+                />
+                <Input
+                 
+                    value="{localModel>/name}"
+                />
+                <Label
+                 
+                    text="age"
+                />
+                <Input
+             
+                    value="{localModel>/age}"
+                />
+                <Label
+                  
+                    text="branch"
+                />
+                <Input
+                  
+                    value="{localModel>/branch}"
+                />
+               
+            </form:SimpleForm>
+        </content>
+    </Dialog>
+</core:FragmentDefinition>
