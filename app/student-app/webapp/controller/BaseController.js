@@ -21,8 +21,8 @@ function(Controller,Fragment) {
 
          },
          createData: function(oModel, oPayload, sPath){
+            debugger;
             return new Promise((resolve, reject) => {
-                
                 oModel.create(sPath, oPayload, {
                     refreshAfterChange: true,
                     success: function(oSuccessData){

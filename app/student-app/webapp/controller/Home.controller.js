@@ -33,15 +33,16 @@ sap.ui.define([
                 oMultiInput4.addValidator(validate);
                 oMultiInput5.addValidator(validate);
                 const oLocalModel = new JSONModel({
-                    id: 0,
+                    id:"",
                     name: "",
-                    age: 0,
+                    age:"",
                     branch: "",
+                    city:""
                 });
                 this.getView().setModel(oLocalModel, "localModel");
                 this.getRouter().attachRoutePatternMatched(this.onEmployeeListLoad, this);
             },
-            
+
             onEmployeeListLoad: function () {
                 this.getView().byId("idStudentTable").getBinding("items").refresh();
             },

@@ -1,9 +1,9 @@
 sap.ui.define(
     [
       "./BaseController",
-        "sap/ui/core/mvc/Controller"
+      "sap/m/MessageBox"
     ],
-    function(BaseController) {
+    function(BaseController, MessageBox) {
       "use strict";
   
       return BaseController.extend("com.app.studentapp.controller.Details", {
@@ -22,9 +22,8 @@ sap.ui.define(
         },
         onDeleteStudent: async function(){
           const oModel = this.getView().getModel("ModelV2");
-         
           try {
-            await this.deleteData(oModel, "/student", this.ID);
+            await this.deleteData(oModel, "/student", this.id);
             this.getRouter().navTo("RouteHome");
           } catch (error) {
             MessageBox.error("Some Technical Issue");

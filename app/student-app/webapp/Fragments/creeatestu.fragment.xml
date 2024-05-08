@@ -77,6 +77,14 @@
                   
                     value="{localModel>/branch}"
                 />
+                <Label
+                  
+                    text="city"
+                />
+                <Input
+                  
+                    value="{localModel>/city}"
+                />
                
             </form:SimpleForm>
         </content>

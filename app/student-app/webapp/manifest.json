@@ -17,7 +17,7 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/student/",
+        "uri": "/StudentSRV/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -25,7 +25,7 @@
         }
       },
       "mainServiceV2": {
-        "uri": "/odata/v2/student/",
+        "uri": "/v2/StudentSRV/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -35,8 +35,8 @@
     },
     "crossNavigation": {
       "inbounds": {
-        "Student Application-display": {
-          "semanticObject": "Student Application",
+        "StudentApplication-display": {
+          "semanticObject": "StudentApplication",
           "action": "display",
           "title": "{{flpTitle}}",
           "signature": {

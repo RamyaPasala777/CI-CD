@@ -1,4 +1,5 @@
 using { student as st } from '../db/data-model';
+@path: '/StudentSRV'
 
 service studentService  {
   entity student as projection on st.Student;
