@@ -1,0 +1,33 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m">
+
+<Table id="idaddresstable" alternateRowColors="true" items="{address}">
+<columns>
+
+<Column id="_IDGenColumn1">
+<Title id="_IDGenTitle6"  text="id"/>
+</Column>
+
+<Column id="_IDGenColumn2">
+<Title id="_IDGenTitle7"  text="street"/>
+</Column>
+
+<Column id="_IDGenColumn3">
+<Title id="_IDGenTitle8"  text="city"/>
+</Column>
+</columns>
+
+<items>
+<ColumnListItem id="_IDGenColumnListItem1" >
+<Text  text="{id}"></Text>
+<Text text="{street}"></Text>
+<Text  text="{city}"></Text>
+
+</ColumnListItem>
+</items>
+
+</Table>
+    
+</core:FragmentDefinition>

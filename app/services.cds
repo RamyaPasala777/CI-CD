@@ -1,2 +1,2 @@
 
-using from './student-app/annotations';
+using from './student-details-app/annotations';
