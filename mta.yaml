@@ -3,99 +3,121 @@ ID: managedapprouter1
 description: A simple CAP project.
 version: 1.0.0
 modules:
-  - name: managedapprouter1-srv
-    type: nodejs
-    path: gen/srv
-    requires:
-      - name: managedapprouter1-db
-      - name: managedapprouter1-auth
-    provides:
-      - name: srv-api
-        properties:
-          srv-url: ${default-url}
-    parameters:
-      buildpack: nodejs_buildpack
-      readiness-health-check-http-endpoint: /health
-      readiness-health-check-type: http
-    build-parameters:
-      builder: npm
-  - name: managedapprouter1-db-deployer
-    type: hdb
-    path: gen/db
-    requires:
-      - name: managedapprouter1-db
-    parameters:
-      buildpack: nodejs_buildpack
-  - name: managedapprouter1-app-content
-    type: com.sap.application.content
-    path: .
-    requires:
-      - name: managedapprouter1-repo-host
-        parameters:
-          content-target: true
-    build-parameters:
-      build-result: resources
-      requires:
-        - artifacts:
-            - comappstudentdetailsapp.zip
-          name: comappstudentdetailsapp
-          target-path: resources/
-  - name: comappstudentdetailsapp
-    type: html5
-    path: app/student-details-app
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - npm install
-        - npm run build:cf
-      supported-platforms:
-        []
-resources:
+- name: managedapprouter1-srv
+  type: nodejs
+  path: gen/srv
+  requires:
   - name: managedapprouter1-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
   - name: managedapprouter1-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      config:
-        tenant-mode: dedicated
-        xsappname: managedapprouter1-${org}-${space}
-      path: ./xs-security.json
-      service: xsuaa
-      service-plan: application
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    readiness-health-check-http-endpoint: /health
+    readiness-health-check-type: http
+  build-parameters:
+    builder: npm
+- name: managedapprouter1-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: managedapprouter1-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: managedapprouter1-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
   - name: managedapprouter1-repo-host
-    type: org.cloudfoundry.managed-service
     parameters:
-      service: html5-apps-repo
-      service-name: managedapprouter1-html5-srv
-      service-plan: app-host
-  - name: managedapprouter1-destination-service
-    type: org.cloudfoundry.managed-service
-    parameters:
-      config:
-        HTML5Runtime_enabled: false
-        init_data:
-          instance:
-            destinations:
-              - Authentication: NoAuthentication
-                Name: ui5
-                ProxyType: Internet
-                Type: HTTP
-                URL: https://ui5.sap.com
-            existing_destinations_policy: update
-        version: 1.0.0
-      service: destination
-      service-name: managedapprouter1-destination-service
-      service-plan: lite
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comappstudentdetailsapp.zip
+      name: comappstudentdetailsapp
+      target-path: resources/
+    - artifacts:
+      - comappproject1.zip
+      name: comappproject1
+      target-path: resources/
+- name: comappstudentdetailsapp
+  type: html5
+  path: app/student-details-app
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: comappproject1
+  type: html5
+  path: app/project1
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: managedapprouter1-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: managedapprouter1-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: managedapprouter1-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: managedapprouter1-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: managedapprouter1-html5-srv
+    service-plan: app-host
+- name: managedapprouter1-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: managedapprouter1-srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: managedapprouter1-destination-service
+    service-plan: lite
+  requires:
+  - name: srv-api
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-    - builder: custom
-      commands:
-        - npm ci
-        - npx cds build --production
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production
